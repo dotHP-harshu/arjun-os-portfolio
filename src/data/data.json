@@ -1,0 +1,67 @@
+{
+  "profile": {
+    "name": "Arjun Mehta",
+    "role": "Senior Backend Engineer",
+    "bio": "I design and ship backend systems that stay fast, reliable, and observable. Currently building distributed systems at scale.",
+    "avatar": "https://picsum.photos/seed/arjun/200/200",
+    "location": "Bangalore, IN",
+    "experience": "8+ Years",
+    "status": "Open to Collaboration",
+    "social": {
+      "github": "https://github.com",
+      "linkedin": "https://linkedin.com",
+      "twitter": "https://twitter.com",
+      "email": "arjun@dev.io"
+    }
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "HyperStream",
+      "description": "High-throughput event streaming engine built with Rust and gRPC.",
+      "tags": ["Rust", "gRPC", "Distributed Systems"],
+      "link": "#"
+    },
+    {
+      "id": 2,
+      "title": "CloudWatch Custom",
+      "description": "Open-source observability dashboard for multi-cloud environments.",
+      "tags": ["Go", "React", "Prometheus"],
+      "link": "#"
+    },
+    {
+      "id": 3,
+      "title": "AuthGuard",
+      "description": "Distributed authentication service with zero-trust architecture.",
+      "tags": ["Node.js", "Redis", "OAuth2"],
+      "link": "#"
+    }
+  ],
+  "experience": [
+    {
+      "company": "TechCorp Systems",
+      "role": "Senior Backend Engineer",
+      "period": "2021 - Present",
+      "description": "Leading the core infrastructure team. Scaled microservices to handle 1M+ RPM."
+    },
+    {
+      "company": "DataFlow Inc",
+      "role": "Backend Developer",
+      "period": "2018 - 2021",
+      "description": "Developed real-time data processing pipelines using Apache Kafka and Go."
+    },
+    {
+      "company": "StartUp Hub",
+      "role": "Junior Developer",
+      "period": "2016 - 2018",
+      "description": "Built and maintained RESTful APIs for a high-growth consumer app."
+    }
+  ],
+  "techStack": {
+    "languages": ["Go", "Rust", "TypeScript", "Python", "C++"],
+    "backend": ["Node.js", "Express", "FastAPI", "gRPC"],
+    "databases": ["PostgreSQL", "Redis", "MongoDB", "Elasticsearch"],
+    "devops": ["Docker", "Kubernetes", "AWS", "Terraform", "CI/CD"]
+  },
+  "initialNotes": "Welcome to ArjunOS Notes!\n\n- Draggable windows\n- Custom themes\n- Snake game\n- Interactive terminal\n\nYour notes are saved automatically."
+}
