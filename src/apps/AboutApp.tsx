@@ -36,12 +36,12 @@ const AboutApp = () => {
       </div>
       <div className="border-t-2 pt-4" style={{ borderColor: "var(--border)" }}>
         <h3 className="text-xs font-bold uppercase mb-2 tracking-widest">
-          System Specs:
+          {userData.about.specsHeading}
         </h3>
         <ul className="text-xs space-y-1 font-mono">
-          <li>• Location: {userData.profile.location}</li>
-          <li>• Experience: {userData.profile.experience}</li>
-          <li>• Status: {userData.profile.status}</li>
+          <li>• {userData.about.specs.location}: {userData.profile.location}</li>
+          <li>• {userData.about.specs.experience}: {userData.profile.experience}</li>
+          <li>• {userData.about.specs.status}: {userData.profile.status}</li>
         </ul>
       </div>
     </div>

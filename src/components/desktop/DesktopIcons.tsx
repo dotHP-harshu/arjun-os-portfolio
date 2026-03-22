@@ -7,6 +7,23 @@ interface DesktopIconsProps {
   focusWindow: (id: WindowType) => void;
 }
 
+const ICON_MAP: Record<string, string> = {
+  about: "/icons/about.png",
+  projects: "/icons/projects.png",
+  tech: "/icons/tech.png",
+  experience: "/icons/experience.png",
+  contact: "/icons/contact.png",
+  resume: "/icons/resume.png",
+  settings: "/icons/setting.png",
+  snake: "/icons/snake.png",
+  tictactoe: "/icons/tic_tac_toe.png",
+  memory: "/icons/memorygame.png",
+  notes: "/icons/notes.png",
+  bughunter: "/icons/bughunter.png",
+  sysmon: "/icons/sysmon.png",
+  coderunner: "/icons/coderunner.png",
+};
+
 export default function DesktopIcons({
   windows,
   openWindow,
@@ -34,18 +51,26 @@ export default function DesktopIcons({
             }`}
           >
             <div
-              className="w-14 h-14 border-2 flex items-center justify-center transition-colors"
+              className="w-14 h-14 border-2 flex items-center justify-center transition-colors overflow-hidden rounded-md"
               style={{
-                backgroundColor: "var(--window-bg)",
+                backgroundColor: "#ffffff",
                 borderColor: "var(--border)",
                 boxShadow: "2px 2px 0px 0px var(--border)",
               }}
             >
-              {win.icon}
-              {/* {React.cloneElement(
-                win.icon as React.ReactElement,
-                { size: 32 }
-              )} */}
+              <img 
+                src={ICON_MAP[win.id]} 
+                alt={win.title} 
+                className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  const sibling = e.currentTarget.nextElementSibling as HTMLElement;
+                  if (sibling) sibling.style.display = 'block';
+                }}
+              />
+              <div style={{ display: 'none' }}>
+                {win.icon}
+              </div>
             </div>
 
             <span

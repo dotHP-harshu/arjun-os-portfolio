@@ -1,0 +1,94 @@
+{
+  "personal": {
+    "name": "Arjun Mehta",
+    "title": "Senior Backend Engineer | Node.js, Distributed Systems & Scalable SaaS",
+    "tagline": "I design and ship backend systems that stay fast, reliable, and observable as they grow.",
+    "location": "Bangalore, India",
+    "availability": "Open to Remote & Hybrid Roles",
+    "email": "arjun.mehta.dev@gmail.com",
+    "github": "https://github.com/arjunmehta",
+    "linkedin": "https://linkedin.com/in/arjunmehta-dev",
+    "twitter": "https://x.com/arjun_codes"
+  },
+  "about": {
+    "intro": "I'm a backend-focused full-stack engineer with 6+ years of experience shipping scalable, secure, and maintainable systems in production. My work sits at the intersection of system design, performance engineering, and developer experience.",
+    "focus": [
+      "Architecting distributed systems that handle high load and failure gracefully",
+      "Designing clean, versioned, and well-documented APIs that are easy to integrate",
+      "Optimizing databases and queries for real-world traffic patterns",
+      "Building platforms that can scale from MVP to 100K+ users without rewrites",
+      "Creating robust observability so issues are detected before users notice"
+    ],
+    "ownership": "I don't just implement endpoints; I own the lifecycle of backend systems from design and implementation to monitoring, scaling, and iteration.",
+    "principles": [
+      "Clean architecture over quick hacks, even under deadlines",
+      "Scalability and reliability designed in from day one",
+      "Observability (logs, metrics, tracing) as a first-class requirement",
+      "Security, correctness, and performance as non-negotiable features"
+    ]
+  },
+  "techStack": {
+    "backend": [
+      "Node.js, TypeScript",
+      "Express.js, NestJS",
+      "RESTful APIs, GraphQL",
+      "WebSockets and real-time messaging"
+    ],
+    "databases": [
+      "PostgreSQL, MySQL, MongoDB",
+      "Redis, Elasticsearch",
+      "Database design and optimization"
+    ],
+    "devops": [
+      "Docker, Kubernetes",
+      "CI/CD pipelines",
+      "AWS, GCP, Azure",
+      "Monitoring and observability"
+    ],
+    "frontend": [
+      "React, TypeScript",
+      "HTML5, CSS3, JavaScript",
+      "Responsive design"
+    ]
+  },
+  "experience": [
+    {
+      "title": "Senior Backend Engineer",
+      "company": "Tech Company",
+      "period": "2022 - Present",
+      "description": "Led backend architecture for scalable SaaS platform serving 100K+ users"
+    },
+    {
+      "title": "Full Stack Developer",
+      "company": "Startup",
+      "period": "2020 - 2022",
+      "description": "Built core backend systems and APIs from scratch"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Distributed API Gateway",
+      "description": "High-performance API gateway with rate limiting and authentication",
+      "tech": ["Node.js", "Redis", "Docker"]
+    },
+    {
+      "name": "Real-time Analytics Platform",
+      "description": "Scalable analytics system processing millions of events daily",
+      "tech": ["WebSocket", "PostgreSQL", "Kubernetes"]
+    }
+  ],
+  "contact": {
+    "email": "arjun.mehta.dev@gmail.com",
+    "github": "https://github.com/arjunmehta",
+    "linkedin": "https://linkedin.com/in/arjunmehta-dev",
+    "twitter": "https://x.com/arjun_codes"
+  },
+  "ui": {
+    "mobileMessage": "Open in desktop screen for better experience",
+    "bootScreen": {
+      "title": "ArjunOS",
+      "subtitle": "Portfolio Edition v2.5.0",
+      "loading": "Booting up..."
+    }
+  }
+}

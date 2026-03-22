@@ -1,12 +1,15 @@
 import React from "react";
 import type { WindowState, WindowType } from "../types/window";
 import { motion } from "motion/react";
-import { Monitor, LayoutGrid, ChevronRight } from "lucide-react";
+import { Monitor, LayoutGrid, ChevronRight, X } from "lucide-react";
+import { useSound } from "../contexts/useSound";
+import userData from "../data/data.json";
 
 interface TaskbarProps {
   windows: WindowState[];
   toggleTaskbarItem: (id: WindowType) => void;
   openWindow: (id: WindowType) => void;
+  closeWindow: (id: WindowType) => void;
   showDesktop: () => void;
 }
 
@@ -14,8 +17,10 @@ export default function Taskbar({
   windows,
   toggleTaskbarItem,
   openWindow,
+  closeWindow,
   showDesktop,
 }: TaskbarProps) {
+  const { playClick } = useSound();
   const openWindows = windows.filter((w) => w.isOpen);
   const startMenuApps = windows
     .filter((w) => w.id !== "about")
@@ -51,7 +56,10 @@ export default function Taskbar({
       {/* ---------------- START BUTTON ---------------- */}
       <div className="relative" ref={startMenuRef}>
         <button
-          onClick={() => setIsStartOpen((v) => !v)}
+          onClick={() => {
+            playClick();
+            setIsStartOpen((v) => !v);
+          }}
           className="h-9 px-4 border-2 font-bold uppercase text-xs flex items-center gap-2 transition-all active:translate-y-[2px]"
           style={{
             backgroundColor: isStartOpen ? "var(--accent)" : "var(--window-bg)",
@@ -89,6 +97,7 @@ export default function Taskbar({
                 <button
                   key={app.id}
                   onClick={() => {
+                    playClick();
                     openWindow(app.id);
                     setIsStartOpen(false);
                   }}
@@ -108,6 +117,7 @@ export default function Taskbar({
               ))}
               <button
                 onClick={() => {
+                  playClick();
                   openWindow("about");
                   setIsStartOpen(false);
                 }}
@@ -123,7 +133,7 @@ export default function Taskbar({
                     {/* Keep visual spacing consistent */}
                     <LayoutGrid size={14} />
                   </span>
-                  About.txt
+                  {userData.system.windows.about}
                 </span>
                 <ChevronRight size={14} />
               </button>
@@ -138,28 +148,47 @@ export default function Taskbar({
           const isActive = !win.isMinimized;
 
           return (
-            <motion.button
+            <motion.div
               key={win.id}
               layout
-              onClick={() => toggleTaskbarItem(win.id)}
-              className="h-9 px-4 border-2 text-xs font-bold uppercase flex items-center gap-2 whitespace-nowrap transition-all"
-              style={{
-                backgroundColor: isActive
-                  ? "var(--accent)"
-                  : "var(--window-bg)",
-                borderColor: "var(--border)",
-                color: isActive ? "#000" : "var(--text)",
-                boxShadow: "2px 2px 0px 0px var(--border)",
-              }}
-              whileTap={{ y: 2 }}
+              className="relative group"
             >
-              {win.icon}
-              {/* {React.cloneElement(
-                win.icon as React.ReactElement,
-                { size: 14 }
-              )} */}
-              {win.title}
-            </motion.button>
+              <button
+                onClick={() => {
+                  playClick();
+                  toggleTaskbarItem(win.id);
+                }}
+                className="h-9 px-4 pr-8 border-2 text-xs font-bold uppercase flex items-center gap-2 whitespace-nowrap transition-all"
+                style={{
+                  backgroundColor: isActive
+                    ? "var(--accent)"
+                    : "var(--window-bg)",
+                  borderColor: "var(--border)",
+                  color: isActive ? "#000" : "var(--text)",
+                  boxShadow: "2px 2px 0px 0px var(--border)",
+                }}
+              >
+                {win.icon}
+                {win.title}
+              </button>
+              
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  playClick();
+                  closeWindow(win.id);
+                }}
+                className="absolute right-1.5 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center border-2 hover:bg-red-500 hover:text-white transition-colors"
+                style={{
+                  borderColor: "var(--border)",
+                  backgroundColor: "var(--window-bg)",
+                  color: "var(--text)",
+                }}
+                title="Close Window"
+              >
+                <X size={10} strokeWidth={3} />
+              </button>
+            </motion.div>
           );
         })}
       </div>
@@ -168,7 +197,10 @@ export default function Taskbar({
       <div className="flex items-center gap-3">
         {/* Show Desktop */}
         <button
-          onClick={showDesktop}
+          onClick={() => {
+            playClick();
+            showDesktop();
+          }}
           className="h-9 w-9 border-2 flex items-center justify-center transition-all active:translate-y-[2px]"
           style={{
             backgroundColor: "var(--window-bg)",

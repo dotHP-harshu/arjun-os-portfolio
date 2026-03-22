@@ -1,20 +1,9 @@
 import React from "react";
+import userData from "../data/data.json";
 
 type BootLine = { text: string; delayMs?: number };
 
-const LINES: BootLine[] = [
-  { text: "ArjunOS v3.2.1 (Production Build)" },
-  { text: "" },
-  { text: "> Initializing Distributed Systems Module..." },
-  { text: "> Connecting to PostgreSQL Cluster..." },
-  { text: "> Starting Redis Cache..." },
-  { text: "> Loading API Gateway..." },
-  { text: "> Verifying Security Policies..." },
-  { text: "> System Health: OK" },
-  { text: "> Uptime: 99.99%" },
-  { text: "" },
-  { text: "Access Granted." },
-];
+const LINES: BootLine[] = userData.system.boot.lines;
 
 function useBootTyping(
   onDone: () => void,
@@ -76,7 +65,7 @@ function useBootTyping(
       cancelled = true;
       if (timeoutId) window.clearTimeout(timeoutId);
     };
-  }, [minDurationMs, onDone]);
+  }, [minDurationMs, endHoldMs, onDone]);
 
   React.useEffect(() => {
     const t = window.setInterval(() => setCursorOn((v) => !v), 450);
@@ -110,7 +99,7 @@ export default function BootScreen({ onComplete }: { onComplete: () => void }) {
             color: "var(--text)",
           }}
         >
-          System Console
+          {userData.system.boot.title}
         </div>
         <pre
           className="p-4 text-xs leading-relaxed font-mono min-h-[320px] whitespace-pre-wrap"
@@ -127,10 +116,9 @@ export default function BootScreen({ onComplete }: { onComplete: () => void }) {
             color: "var(--text)",
           }}
         >
-          {"> boot sequence in progress…"}
+          {userData.system.boot.status}
         </div>
       </div>
     </div>
   );
 }
-

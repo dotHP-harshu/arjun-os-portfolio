@@ -1,7 +1,9 @@
 import { Minus, Square, X } from "lucide-react";
 import type { WindowState } from "../../types/window";
 import { motion, useDragControls, type Variants } from "motion/react";
-import { agentLog } from "../../debug/agentLog";
+// import { agentLog } from "../../debug/agentLog";
+import { useSound } from "../../contexts/useSound";
+import userData from "../../data/data.json";
 
 interface WindowProps {
   key?: React.Key;
@@ -10,6 +12,7 @@ interface WindowProps {
   onMinimize: () => void;
   onMaximize: () => void;
   onFocus: () => void;
+  onPositionChange: (pos: { x: number; y: number }) => void;
   children: React.ReactNode;
 }
 
@@ -23,10 +26,10 @@ const  Window = ({
   onSizeChange,
   children 
 }: WindowProps & { 
-  onPositionChange: (pos: { x: number, y: number }) => void,
   onSizeChange: (size: { width: number, height: number }) => void 
 }) => {
   const dragControls = useDragControls();
+  const { playClick } = useSound();
   
   const windowVariants = {
     normal: { 
@@ -60,28 +63,28 @@ const  Window = ({
       dragListener={false}
       dragMomentum={false}
       onDragEnd={(_, info) => {
-        agentLog({
-          runId: "pre-fix",
-          hypothesisId: "H3",
-          location: "src/components/window/window.tsx:onDragEnd",
-          message: "window.dragEnd",
-          data: {
-            id: window.id,
-            before: window.position,
-            offset: info.offset,
-            computedNext: {
-              x: window.position.x + info.offset.x,
-              y: window.position.y + info.offset.y,
-            },
-          },
-        });
+        // agentLog({
+        //   runId: "pre-fix",
+        //   hypothesisId: "H3",
+        //   location: "src/components/window/window.tsx:onDragEnd",
+        //   message: "window.dragEnd",
+        //   data: {
+        //     id: window.id,
+        //     before: window.position,
+        //     offset: info.offset,
+        //     computedNext: {
+        //       x: window.position.x + info.offset.x,
+        //       y: window.position.y + info.offset.y,
+        //     },
+        //   },
+        // });
         onPositionChange({ 
           x: window.position.x + info.offset.x, 
           y: window.position.y + info.offset.y 
         });
       }}
       onMouseDown={onFocus}
-      className={`absolute border-2 overflow-hidden flex flex-col ${window.isMaximized ? "" : "min-w-[320px] min-h-[200px]"}`}
+      className={`absolute lean-slider border-2 overflow-hidden flex flex-col ${window.isMaximized ? "" : "min-w-[320px] min-h-[200px]"}`}
       style={{ 
         zIndex: window.isMaximized ? 5000 : window.zIndex,
         backgroundColor: 'var(--window-bg)',
@@ -107,21 +110,21 @@ const  Window = ({
         </div>
         <div className="flex gap-1">
           <button 
-            onClick={(e) => { e.stopPropagation(); onMinimize(); }}
+            onClick={(e) => { e.stopPropagation(); playClick(); onMinimize(); }}
             className="w-6 h-6 border-2 flex items-center justify-center hover:opacity-80 active:translate-y-0.5"
             style={{ backgroundColor: 'var(--window-bg)', borderColor: 'var(--border)', color: 'var(--text)' }}
           >
             <Minus size={14} />
           </button>
           <button 
-            onClick={(e) => { e.stopPropagation(); onMaximize(); }}
+            onClick={(e) => { e.stopPropagation(); playClick(); onMaximize(); }}
             className="w-6 h-6 border-2 flex items-center justify-center hover:opacity-80 active:translate-y-0.5"
             style={{ backgroundColor: 'var(--window-bg)', borderColor: 'var(--border)', color: 'var(--text)' }}
           >
             <Square size={10} />
           </button>
           <button 
-            onClick={(e) => { e.stopPropagation(); onClose(); }}
+            onClick={(e) => { e.stopPropagation(); playClick(); onClose(); }}
             className="w-6 h-6 border-2 flex items-center justify-center hover:opacity-80 active:translate-y-0.5"
             style={{ backgroundColor: '#f28b82', borderColor: 'var(--border)', color: 'var(--text)' }}
           >
@@ -139,7 +142,7 @@ const  Window = ({
       <div className="border-t px-3 py-1 flex justify-between items-center text-[10px] font-bold opacity-50 uppercase shrink-0"
            style={{ backgroundColor: 'var(--taskbar)', borderColor: 'var(--border)' }}>
         <span>Ready</span>
-        <span>ArjunOS v2.5</span>
+        <span>{userData.system.osName} {userData.system.osVersion}</span>
       </div>
 
       {/* Resize Handle */}

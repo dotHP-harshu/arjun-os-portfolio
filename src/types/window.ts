@@ -4,6 +4,7 @@ export type WindowType =
   | 'tech'
   | 'experience'
   | 'contact'
+  | 'resume'
   // | 'terminal'
   | 'settings'
   | 'snake'
@@ -17,7 +18,7 @@ export type WindowType =
 export interface WindowState {
   id: WindowType;
   title: string;
-  icon: React.ReactNode;
+  icon: import('react').ReactNode;
   isOpen: boolean;
   isMinimized: boolean;
   isMaximized: boolean;

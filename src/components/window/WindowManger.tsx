@@ -50,9 +50,7 @@ export default function WindowManager({
             onMinimize={() => minimizeWindow(win.id)}
             onMaximize={() => maximizeWindow(win.id)}
             onFocus={() => focusWindow(win.id)}
-            onPositionChange={(pos) =>
-              updateWindowPosition(win.id, pos)
-            }
+            onPositionChange={(pos) => updateWindowPosition(win.id, pos)}
             onSizeChange={(size) =>
               updateWindowSize(win.id, size)
             }

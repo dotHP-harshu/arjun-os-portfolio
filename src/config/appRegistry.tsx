@@ -6,6 +6,7 @@ import ExperienceApp from "../apps/ExperienceApp";
 import MemoryMatchApp from "../apps/MemoryMatchApp";
 import NotesApp from "../apps/NotesApp";
 import ProjectApp from "../apps/ProjectApp";
+import ResumeApp from "../apps/ResumeApp";
 import SettingApp from "../apps/SettingApp";
 import SnakeGameApp from "../apps/SnakeGameApp";
 import SysMonApp from "../apps/SysMonApp";
@@ -24,13 +25,14 @@ export type AppRenderContext = {
 
 export const appRegistry: Record<
   WindowType,
-  (ctx: AppRenderContext) => React.ReactNode
+  (ctx: AppRenderContext) => import('react').ReactNode
 > = {
   about: () => <AboutApp />,
   projects: () => <ProjectApp />,
   tech: () => <TechApp />,
   experience: () => <ExperienceApp />,
   contact: () => <ContactApp />,
+  resume: () => <ResumeApp />,
   // terminal: () => <TerminalApp />,
   settings: (ctx) => (
     <SettingApp

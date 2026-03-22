@@ -15,11 +15,12 @@ import {
 } from "lucide-react";
 
 import type { WindowState } from "../types/window";
+import userData from "../data/data.json";
 
 export const initialWindows: WindowState[] = [
   {
     id: "about",
-    title: "About.txt",
+    title: userData.system.windows.about,
     icon: <User2 size={14} strokeWidth={1.5} />,
     isOpen: false,
     isMinimized: false,
@@ -31,7 +32,7 @@ export const initialWindows: WindowState[] = [
 
   {
     id: "projects",
-    title: "Projects.dir",
+    title: userData.system.windows.projects,
     icon: <Folder size={14} strokeWidth={1.5} />,
     isOpen: false,
     isMinimized: false,
@@ -43,7 +44,7 @@ export const initialWindows: WindowState[] = [
 
   {
     id: "tech",
-    title: "TechStack.exe",
+    title: userData.system.windows.tech,
     icon: <Code2 size={14} strokeWidth={1.5} />,
     isOpen: false,
     isMinimized: false,
@@ -55,7 +56,7 @@ export const initialWindows: WindowState[] = [
 
   {
     id: "experience",
-    title: "Experience.doc",
+    title: userData.system.windows.experience,
     icon: <Briefcase size={14} strokeWidth={1.5} />,
     isOpen: false,
     isMinimized: false,
@@ -67,7 +68,7 @@ export const initialWindows: WindowState[] = [
 
   {
     id: "contact",
-    title: "Contact.exe",
+    title: userData.system.windows.contact,
     icon: <MessageCircle size={14} strokeWidth={1.5} />,
     isOpen: false,
     isMinimized: false,
@@ -77,21 +78,21 @@ export const initialWindows: WindowState[] = [
     size: { width: 400, height: 350 },
   },
 
-  // {
-  //   id: "terminal",
-  //   title: "cmd.exe",
-  //   icon: <Terminal size={14} strokeWidth={1.5} />,
-  //   isOpen: false,
-  //   isMinimized: false,
-  //   isMaximized: false,
-  //   zIndex: 1,
-  //   position: { x: 320, y: 280 },
-  //   size: { width: 600, height: 400 },
-  // },
+  {
+    id: "resume",
+    title: userData.system.windows.resume,
+    icon: <FileText size={14} strokeWidth={1.5} />,
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    zIndex: 1,
+    position: { x: 320, y: 280 },
+    size: { width: 700, height: 800 },
+  },
 
   {
     id: "settings",
-    title: "Settings.cpl",
+    title: userData.system.windows.settings,
     icon: <Settings2 size={14} strokeWidth={1.5} />,
     isOpen: false,
     isMinimized: false,
@@ -103,7 +104,7 @@ export const initialWindows: WindowState[] = [
 
   {
     id: "snake",
-    title: "Snake.exe",
+    title: userData.system.windows.snake,
     icon: <Gamepad size={14} strokeWidth={1.5} />,
     isOpen: false,
     isMinimized: false,
@@ -115,7 +116,7 @@ export const initialWindows: WindowState[] = [
 
   {
     id: "tictactoe",
-    title: "TicTacToe.exe",
+    title: userData.system.windows.tictactoe,
     icon: <Grid3X3 size={14} strokeWidth={1.5} />,
     isOpen: false,
     isMinimized: false,
@@ -127,7 +128,7 @@ export const initialWindows: WindowState[] = [
 
   {
     id: "memory",
-    title: "MemoryMatch.exe",
+    title: userData.system.windows.memory,
     icon: <Layers size={14} strokeWidth={1.5} />,
     isOpen: false,
     isMinimized: false,
@@ -139,7 +140,7 @@ export const initialWindows: WindowState[] = [
 
   {
     id: "notes",
-    title: "Notes.txt",
+    title: userData.system.windows.notes,
     icon: <FileText size={14} strokeWidth={1.5} />,
     isOpen: false,
     isMinimized: false,
@@ -151,7 +152,7 @@ export const initialWindows: WindowState[] = [
 
   {
     id: "bughunter",
-    title: "BugHunter.exe",
+    title: userData.system.windows.bughunter,
     icon: <ShieldAlert size={14} strokeWidth={1.5} />,
     isOpen: false,
     isMinimized: false,
@@ -163,7 +164,7 @@ export const initialWindows: WindowState[] = [
 
   {
     id: "sysmon",
-    title: "SysMon.exe",
+    title: userData.system.windows.sysmon,
     icon: <Activity size={14} strokeWidth={1.5} />,
     isOpen: false,
     isMinimized: false,
@@ -175,7 +176,7 @@ export const initialWindows: WindowState[] = [
 
   {
     id: "coderunner",
-    title: "CodeRunner.exe",
+    title: userData.system.windows.coderunner,
     icon: <Terminal size={14} strokeWidth={1.5} />,
     isOpen: false,
     isMinimized: false,

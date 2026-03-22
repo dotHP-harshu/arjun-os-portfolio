@@ -1,1 +1,50 @@
 @import "tailwindcss";
+
+/* Code Runner: overlay textarea on Prism-highlighted pre */
+.editor-textarea,
+.editor-pre {
+  margin: 0 !important;
+  padding: 12px !important;
+}
+.editor-textarea {
+  background: transparent !important;
+  caret-color: #c5c8c6;
+  color: transparent;
+  outline: none;
+}
+.editor-pre {
+  white-space: pre;
+}
+.editor-pre code {
+  color: inherit;
+  background: none;
+  padding: 0;
+}
+
+
+/* Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin; /* or auto/none */
+  scrollbar-color: var(--accent) var(--bg);
+}
+
+/* Chrome, Safari, Edge */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  border-radius: 8px;
+  border: 2px solid var(--bg);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent);
+}

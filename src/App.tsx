@@ -5,11 +5,13 @@ import { useWindowManager } from "./hooks/useWindowManager";
 import WindowManager from "./components/window/WindowManger";
 import DesktopIcons from "./components/desktop/DesktopIcons";
 import Taskbar from "./apps/Taskbar";
-import { agentLog } from "./debug/agentLog";
+import MobileMessage from "./components/MobileMessage";
+// import { agentLog } from "./debug/agentLog";
 import BootScreen from "./components/BootScreen";
+import userData from "./data/data.json";
 
-const STORAGE_THEME_KEY = "arjunos.theme";
-const STORAGE_BG_KEY = "arjunos.background";
+const STORAGE_THEME_KEY = `${userData.system.osName.toLowerCase()}.theme`;
+const STORAGE_BG_KEY = `${userData.system.osName.toLowerCase()}.background`;
 
 function isThemeType(value: unknown): value is ThemeType {
   return (
@@ -18,7 +20,7 @@ function isThemeType(value: unknown): value is ThemeType {
   );
 }
 
-const BACKGROUNDS: BackgroundType[] = ["grid", "doodles", "blobs", "waves"];
+const BACKGROUNDS: BackgroundType[] = ["grid", "doodles", "blobs", "waves", "dots", "particles"];
 
 function isBackgroundType(value: unknown): value is BackgroundType {
   return typeof value === "string" && (BACKGROUNDS as string[]).includes(value);
@@ -26,6 +28,7 @@ function isBackgroundType(value: unknown): value is BackgroundType {
 
 export default function App() {
   const [booted, setBooted] = useState(false);
+  const [showMobileMessage, setShowMobileMessage] = useState(false);
 
   const {
     windows,
@@ -60,25 +63,45 @@ export default function App() {
     sessionStorage.setItem(STORAGE_BG_KEY, backgroundType);
   }, [backgroundType]);
 
+  // Check if mobile and show message on first load
   React.useEffect(() => {
-    agentLog({
-      runId: "pre-fix",
-      hypothesisId: "H4",
-      location: "src/App.tsx:theme-change",
-      message: "theme.changed",
-      data: { currentTheme, theme },
-    });
-  }, [currentTheme, theme]);
+    const checkMobile = () => {
+      const isMobile = window.innerWidth < 768;
+      const hasSeenMessage = sessionStorage.getItem('mobile-message-seen');
+      if (isMobile && !hasSeenMessage) {
+        setShowMobileMessage(true);
+      }
+    };
 
-  React.useEffect(() => {
-    agentLog({
-      runId: "pre-fix",
-      hypothesisId: "H4",
-      location: "src/App.tsx:background-change",
-      message: "background.changed",
-      data: { backgroundType },
-    });
-  }, [backgroundType]);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handleMobileMessageClose = () => {
+    setShowMobileMessage(false);
+    sessionStorage.setItem('mobile-message-seen', 'true');
+  };
+
+  // React.useEffect(() => {
+  //   agentLog({
+  //     runId: "pre-fix",
+  //     hypothesisId: "H4",
+  //     location: "src/App.tsx:theme-change",
+  //     message: "theme.changed",
+  //     data: { currentTheme, theme },
+  //   });
+  // }, [currentTheme, theme]);
+
+  // React.useEffect(() => {
+  //   agentLog({
+  //     runId: "pre-fix",
+  //     hypothesisId: "H4",
+  //     location: "src/App.tsx:background-change",
+  //     message: "background.changed",
+  //     data: { backgroundType },
+  //   });
+  // }, [backgroundType]);
 
   return (
     <div
@@ -98,18 +121,44 @@ export default function App() {
         } as React.CSSProperties
       }
     >
+      {/* Mobile Message */}
+      {showMobileMessage && (
+        <MobileMessage onClose={handleMobileMessageClose} />
+      )}
+
       {!booted ? (
         <BootScreen onComplete={() => setBooted(true)} />
       ) : (
         <>
-          <main className="flex-1 relative p-8 overflow-hidden">
+          <main className="flex-1 relative p-4 md:p-8 overflow-hidden">
             <Background type={backgroundType} />
 
-            <DesktopIcons
-              windows={windows}
-              openWindow={openWindow}
-              focusWindow={focusWindow}
-            />
+            {/* Responsive Desktop Icons */}
+            <div className="hidden md:block">
+              <DesktopIcons
+                windows={windows}
+                openWindow={openWindow}
+                focusWindow={focusWindow}
+              />
+            </div>
+
+            {/* Mobile/Tablet Icons - Simplified Layout */}
+            <div className="md:hidden grid grid-cols-3 gap-4 p-4">
+              {windows.map((win) => (
+                <button
+                  key={win.id}
+                  onClick={() => openWindow(win.id)}
+                  className="flex flex-col items-center gap-2 p-3 rounded-lg bg-[var(--window-bg)]/80 border border-[var(--border)]"
+                >
+                  <div className="w-8 h-8 flex items-center justify-center">
+                    {win.icon}
+                  </div>
+                  <span className="text-xs text-[var(--text)] truncate max-w-full">
+                    {win.title}
+                  </span>
+                </button>
+              ))}
+            </div>
 
             <WindowManager
               windows={windows}
@@ -132,6 +181,7 @@ export default function App() {
             windows={windows}
             toggleTaskbarItem={toggleTaskbarItem}
             openWindow={openWindow}
+            closeWindow={closeWindow}
             showDesktop={showDesktop}
           />
         </>

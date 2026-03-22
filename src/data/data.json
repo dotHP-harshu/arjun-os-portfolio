@@ -20,21 +20,24 @@
       "title": "HyperStream",
       "description": "High-throughput event streaming engine built with Rust and gRPC.",
       "tags": ["Rust", "gRPC", "Distributed Systems"],
-      "link": "#"
+      "live": "https://hyperstream.demo",
+      "code": "https://github.com/arjunmehta/hyperstream"
     },
     {
       "id": 2,
       "title": "CloudWatch Custom",
       "description": "Open-source observability dashboard for multi-cloud environments.",
       "tags": ["Go", "React", "Prometheus"],
-      "link": "#"
+      "live": "https://cloudwatch-custom.demo",
+      "code": "https://github.com/arjunmehta/cloudwatch-custom"
     },
     {
       "id": 3,
       "title": "AuthGuard",
       "description": "Distributed authentication service with zero-trust architecture.",
       "tags": ["Node.js", "Redis", "OAuth2"],
-      "link": "#"
+      "live": "https://authguard.demo",
+      "code": "https://github.com/arjunmehta/authguard"
     }
   ],
   "experience": [
@@ -58,10 +61,89 @@
     }
   ],
   "techStack": {
+    "groups": [
+      { "label": "Languages", "key": "languages" },
+      { "label": "Backend", "key": "backend" },
+      { "label": "Infrastructure", "key": "devops" },
+      { "label": "Databases", "key": "databases" }
+    ],
     "languages": ["Go", "Rust", "TypeScript", "Python", "C++"],
     "backend": ["Node.js", "Express", "FastAPI", "gRPC"],
     "databases": ["PostgreSQL", "Redis", "MongoDB", "Elasticsearch"],
     "devops": ["Docker", "Kubernetes", "AWS", "Terraform", "CI/CD"]
   },
-  "initialNotes": "Welcome to ArjunOS Notes!\n\n- Draggable windows\n- Custom themes\n- Snake game\n- Interactive terminal\n\nYour notes are saved automatically."
+  "initialNotes": "Welcome to ArjunOS Notes!\n\n- Draggable windows\n- Custom themes\n- Snake game\n- Interactive terminal\n\nYour notes are saved automatically.",
+  "system": {
+    "osName": "ArjunOS",
+    "osVersion": "v2.5.0-stable",
+    "kernel": "React 19.1.1",
+    "shell": "Tailwind 4.2.1",
+    "boot": {
+      "title": "System Console",
+      "status": "> boot sequence in progress…",
+      "lines": [
+        { "text": "ArjunOS v3.2.1 (Production Build)" },
+        { "text": "" },
+        { "text": "> Initializing Distributed Systems Module..." },
+        { "text": "> Connecting to PostgreSQL Cluster..." },
+        { "text": "> Starting Redis Cache..." },
+        { "text": "> Loading API Gateway..." },
+        { "text": "> Verifying Security Policies..." },
+        { "text": "> System Health: OK" },
+        { "text": "> Uptime: 99.99%" },
+        { "text": "" },
+        { "text": "Access Granted." }
+      ]
+    },
+    "windows": {
+      "about": "About.txt",
+      "projects": "Projects.dir",
+      "tech": "TechStack.exe",
+      "experience": "Experience.doc",
+      "contact": "Contact.exe",
+      "resume": "Resume.pdf",
+      "settings": "Settings.cpl",
+      "snake": "Snake.exe",
+      "tictactoe": "TicTacToe.exe",
+      "memory": "MemoryMatch.exe",
+      "notes": "Notes.txt",
+      "bughunter": "BugHunter.exe",
+      "sysmon": "SysMon.exe",
+      "coderunner": "CodeRunner.exe"
+    },
+    "mobileMessage": {
+      "title": "Desktop Experience Recommended",
+      "description": "Open in desktop screen for better experience",
+      "points": [
+        "Interactive desktop environment",
+        "Multiple windows and apps",
+        "Full functionality available"
+      ],
+      "button": "Continue Anyway"
+    }
+  },
+  "contact": {
+    "heading": "Initialize secure communication protocol:",
+    "placeholders": {
+      "name": "your name",
+      "email": "you@example.com",
+      "message": "type your message…"
+    },
+    "status": {
+      "connection": "connection status: stable",
+      "encryption": "encryption: aes-256",
+      "ready": "ready to transmit..."
+    },
+    "buttons": {
+      "submit": "Transmit"
+    }
+  },
+  "about": {
+    "specsHeading": "System Specs:",
+    "specs": {
+      "location": "Location",
+      "experience": "Experience",
+      "status": "Status"
+    }
+  }
 }

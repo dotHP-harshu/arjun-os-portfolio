@@ -48,7 +48,7 @@ function ContactApp() {
   return (
     <div className="space-y-6">
       <p className="text-sm font-medium">
-        Initialize secure communication protocol:
+        {userData.contact.heading}
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-3">
@@ -66,7 +66,7 @@ function ContactApp() {
                 borderColor: "var(--border)",
                 color: "var(--text)",
               }}
-              placeholder="your name"
+              placeholder={userData.contact.placeholders.name}
               autoComplete="name"
             />
           </label>
@@ -84,7 +84,7 @@ function ContactApp() {
                 borderColor: "var(--border)",
                 color: "var(--text)",
               }}
-              placeholder="you@example.com"
+              placeholder={userData.contact.placeholders.email}
               autoComplete="email"
               inputMode="email"
             />
@@ -105,7 +105,7 @@ function ContactApp() {
               borderColor: "var(--border)",
               color: "var(--text)",
             }}
-            placeholder="type your message…"
+            placeholder={userData.contact.placeholders.message}
           />
         </label>
 
@@ -120,7 +120,7 @@ function ContactApp() {
           }}
         >
           <Send size={16} strokeWidth={1.5} />
-          Transmit
+          {userData.contact.buttons.submit}
         </button>
       </form>
 
@@ -176,11 +176,11 @@ function ContactApp() {
         className="p-3 font-mono text-[10px]"
         style={{ backgroundColor: "var(--border)", color: "var(--accent)" }}
       >
-        &gt; connection status: stable
+        &gt; {userData.contact.status.connection}
         <br />
-        &gt; encryption: aes-256
+        &gt; {userData.contact.status.encryption}
         <br />
-        &gt; ready to transmit...
+        &gt; {userData.contact.status.ready}
       </div>
     </div>
   )
