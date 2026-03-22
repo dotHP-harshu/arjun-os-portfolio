@@ -23,8 +23,10 @@ function getStoredEnabled(): boolean {
 function getStoredVolume(): number {
   if (typeof sessionStorage === "undefined") return 0.6;
   const v = sessionStorage.getItem(STORAGE_SOUND_VOLUME);
+  if (v === null) return 0.6;
   const n = Number(v);
-  if (Number.isFinite(n) && n >= 0 && n <= 1) return n;
+  // If stored volume is 0, reset to 0.6 as per requirement "at least 60 on initial"
+  if (Number.isFinite(n) && n > 0 && n <= 1) return n;
   return 0.6;
 }
 

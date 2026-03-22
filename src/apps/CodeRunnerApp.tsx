@@ -162,7 +162,7 @@ const CodeRunnerApp = () => {
             Editor
           </div>
           <div
-            className="flex-1 min-h-0 border-2 overflow-auto rounded"
+            className="flex-1 min-h-0 border-2 overflow-auto custom-scrollbar rounded"
             style={{
               borderColor: "var(--border)",
               backgroundColor: "#1d1f21",
@@ -191,7 +191,7 @@ const CodeRunnerApp = () => {
             Output
           </div>
           <pre
-            className="w-full flex-1 min-h-0 p-2 border-2 text-xs overflow-auto"
+            className="w-full flex-1 min-h-0 p-2 border-2 text-xs overflow-auto custom-scrollbar"
             style={{
               backgroundColor: "var(--border)",
               borderColor: "var(--border)",

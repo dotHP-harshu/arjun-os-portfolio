@@ -92,7 +92,7 @@ export default function Taskbar({
               Programs
             </div>
 
-            <div className="max-h-72 overflow-auto">
+            <div className="max-h-72 overflow-auto custom-scrollbar">
               {startMenuApps.map((app) => (
                 <button
                   key={app.id}
@@ -143,7 +143,7 @@ export default function Taskbar({
       </div>
 
       {/* ---------------- OPEN WINDOWS ---------------- */}
-      <div className="flex-1 flex gap-2 overflow-x-auto">
+      <div className="flex-1 flex gap-2 overflow-x-auto custom-scrollbar">
         {openWindows.map((win) => {
           const isActive = !win.isMinimized;
 

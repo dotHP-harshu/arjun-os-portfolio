@@ -11,7 +11,7 @@ const NotesApp = () => {
 
   return (
     <textarea 
-      className="w-full h-full bg-transparent border-none outline-none resize-none font-mono text-sm leading-relaxed"
+      className="w-full h-full bg-transparent border-none outline-none resize-none font-mono text-sm leading-relaxed custom-scrollbar"
       value={notes}
       onChange={(e) => setNotes(e.target.value)}
       spellCheck={false}

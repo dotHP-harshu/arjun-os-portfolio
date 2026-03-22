@@ -41,15 +41,16 @@ const SettingApp = ({
           </label>
           <div className="flex items-center gap-3">
             <span className="text-[10px] font-bold uppercase opacity-70 w-12">Volume</span>
-            <input
-              type="range"
-              min={0}
-              max={100}
-              value={Math.round(volume * 100)}
-              onChange={(e) => setVolume(Number(e.target.value) / 100)}
-              className="flex-1 h-2 accent-[var(--accent)]"
-              style={{ background: "var(--border)" }}
-            />
+            <div className="flex-1 flex items-center relative group">
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={Math.round(volume * 100)}
+                onChange={(e) => setVolume(Number(e.target.value) / 100)}
+                className="w-full h-1.5 bg-[var(--border)] rounded-lg appearance-none cursor-pointer accent-[var(--accent)]"
+              />
+            </div>
             <span className="text-[10px] font-mono w-8">{Math.round(volume * 100)}%</span>
           </div>
         </div>

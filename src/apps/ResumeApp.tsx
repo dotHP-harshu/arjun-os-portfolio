@@ -133,7 +133,7 @@ const ResumeApp = () => {
       </div>
 
       {/* PDF Viewer */}
-      <div className="flex-1 overflow-auto bg-gray-100 dark:bg-gray-900 flex items-center justify-center p-4">
+      <div className="flex-1 overflow-auto custom-scrollbar bg-gray-100 dark:bg-gray-900 flex items-center justify-center p-4">
         <div className="shadow-2xl">
           <Document
             file={resumeUrl}
