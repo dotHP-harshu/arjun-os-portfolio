@@ -62,6 +62,7 @@ export default function DesktopIcons({
                 src={ICON_MAP[win.id]} 
                 alt={win.title} 
                 className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
+                loading="lazy"
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';
                   const sibling = e.currentTarget.nextElementSibling as HTMLElement;

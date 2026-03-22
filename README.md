@@ -1,139 +1,111 @@
-# Arjun Mehta Portfolio
+# DeskFolio 🖥️
 
-A modern, interactive portfolio website built with React, TypeScript, and Tailwind CSS. Features a retro desktop OS interface with multiple applications, themes, and responsive design.
+DeskFolio is a highly customizable, interactive OS-style portfolio template built with **React**, **TypeScript**, **Vite**, and **Tailwind CSS**. It provides a unique, windowed desktop experience for showcasing your projects, skills, and experience.
 
-## Features
+## ✨ Features
 
-- 🖥️ **Desktop OS Interface** - Interactive window-based UI with draggable windows
-- 🎨 **Multiple Themes** - Light, dark, and custom color schemes
-- 🌈 **Animated Backgrounds** - Grid, doodles, blobs, waves, dots, and particles
-- 📱 **Responsive Design** - Mobile and tablet optimized with desktop-first messaging
-- 📄 **PDF Resume Viewer** - Interactive resume with zoom, rotation, and download
-- 🎵 **Sound System** - Audio feedback for UI interactions
-- 🎮 **Mini Games** - Snake, Tic-Tac-Toe, Memory Match
-- 📝 **Notes App** - Built-in notepad functionality
-- 🐛 **Bug Hunter** - Debug mini-game
-- 📊 **System Monitor** - Resource monitoring simulation
-- 💻 **Code Runner** - Live code execution environment
+- **Window Management**: Draggable, resizable, minimizable, and maximizable windows.
+- **Dynamic Content**: All text, projects, and system info are managed via a single `data.json` file.
+- **Interactive Apps**: Built-in apps like Snake, TicTacToe, Memory Game, Notes, and a Code Runner.
+- **Theming System**: Multiple built-in themes (Classic, Dark, Cyberpunk, Matrix, etc.) and custom backgrounds.
+- **Sound System**: Interactive sound effects for window actions and system events.
+- **SEO Optimized**: Pre-configured meta tags, structured data, and search engine files.
+- **Mobile Responsive**: Custom mobile message and simplified layout for smaller screens.
 
-## Tech Stack
+## 🚀 Getting Started
 
-- **Frontend**: React 18, TypeScript, Tailwind CSS
-- **Animations**: Framer Motion
-- **PDF**: react-pdf
-- **Icons**: Lucide React
-- **Build Tool**: Vite
+### Prerequisites
 
-## Project Structure
+- Node.js (v18 or higher)
+- npm or yarn
 
-\\\
-src/
-├── apps/              # Application components
-├── components/          # Reusable UI components
-├── contexts/           # React contexts
-├── config/            # Configuration files
-├── hooks/             # Custom React hooks
-├── types/             # TypeScript type definitions
-├── lib/               # Utility libraries
-└── data/              # Static data and content
-\\\
+### Installation
 
-## Getting Started
+1. Clone the repository:
+   ```bash
+   git clone <your-repo-url>
+   cd deskfolio
+   ```
 
-1. **Clone the repository**
-   \\\ash
-   git clone <repository-url>
-   cd arjun-mehta-portfolio
-   \\\
-
-2. **Install dependencies**
-   \\\ash
+2. Install dependencies:
+   ```bash
    npm install
-   \\\
+   ```
 
-3. **Start development server**
-   \\\ash
+3. Start the development server:
+   ```bash
    npm run dev
-   \\\
+   ```
 
-4. **Build for production**
-   \\\ash
+4. Build for production:
+   ```bash
    npm run build
-   \\\
+   ```
 
-## Customization
+## 🛠️ Customization Guide
 
-### Content Management
-All website content is centralized in \src/data/content.json\:
+DeskFolio is designed to be easily personalized. Most changes can be made without touching the core logic.
 
-\\\json
-{
-  
-personal: {
-    name: Your
-Name,
-    title: Your
-Title,
-    bio: Your
-bio...
-  },
-  projects: [...],
-  experience: [...],
-  contact: {...}
-}
-\\\
+### 1. Personal Content (`src/data/data.json`)
 
-### Themes
-Add new themes in \src/config/themes.ts\:
+This is the most important file. Update this JSON to change:
+- **Profile**: Name, role, bio, avatar, and social links.
+- **Projects**: Title, description, tags, and links (Live/Code).
+- **Experience**: Work history and role descriptions.
+- **Tech Stack**: Languages, backend tools, databases, and DevOps skills.
+- **System Branding**: OS name, version, and the boot sequence text.
+- **App Control**: Use the `disabledApps` array to hide specific apps by their ID.
 
-\\\	ypescript
-export const themes = {
-  yourTheme: {
-    bg: #background-color,
-    windowBg: #window-bg,
-    // ... other colors
-  }
-};
-\\\
+#### 📦 Available App IDs
+You can rename any app in the `system.windows` section or disable it in the `disabledApps` section using these IDs:
 
-### Backgrounds
-Create new background components in \src/components/Backgrounds.tsx\ and add to the \BackgroundType\ union.
+| App ID | Default Title | Description |
+| :--- | :--- | :--- |
+| `about` | `About.txt` | Personal profile and system specs. |
+| `projects` | `Projects.dir` | Your featured work/projects list. |
+| `tech` | `TechStack.exe` | Technical skills and tools. |
+| `experience` | `Experience.doc` | Work history and career timeline. |
+| `contact` | `Contact.exe` | Secure communication form and social links. |
+| `resume` | `Resume.pdf` | PDF Resume viewer. |
+| `settings` | `Settings.cpl` | OS themes, backgrounds, and volume controls. |
+| `notes` | `Notes.txt` | Interactive notepad with auto-save. |
+| `coderunner` | `CodeRunner.exe` | Live code execution environment. |
+| `sysmon` | `SysMon.exe` | System resource monitor simulation. |
+| `snake` | `Snake.exe` | Retro arcade Snake game. |
+| `tictactoe` | `TicTacToe.exe` | Classic Tic-Tac-Toe game. |
+| `memory` | `MemoryMatch.exe` | Memory card matching game. |
+| `bughunter` | `BugHunter.exe` | Interactive bug catching game. |
 
-## Deployment
+### 2. Branding & Personalization
 
-The project builds to static files and can be deployed to any static hosting service:
+To make DeskFolio your own, follow these steps:
 
-- **Netlify**: Drag and drop the \dist\ folder
-- **Vercel**: Connect your Git repository
-- **GitHub Pages**: Use GitHub Actions for automatic deployment
-- **Traditional Hosting**: Upload the \dist\ folder contents
+- **Name & Role**: Change `profile.name` and `profile.role` in `data.json`.
+- **Avatar**: Replace `public/user.jpg` with your own photo or update the `avatar` link in `data.json`.
+- **Resume**: Replace `public/resume.pdf` with your professional resume.
+- **Icons**: Add your custom PNG icons to `public/icons/`. Ensure the filenames match the IDs in `src/components/desktop/DesktopIcons.tsx`.
+- **SEO**: Update the `<title>`, meta tags, and JSON-LD structured data in `index.html`. Also update `public/robots.txt` and `public/sitemap.xml` with your production URL.
 
-## Browser Support
+### 3. Window Configuration (`src/config/window.config.tsx`)
 
-- ✅ Chrome/Chromium 90+
-- ✅ Firefox 88+
-- ✅ Safari 14+
-- ✅ Edge 90+
+Change initial window positions, default sizes, or icons for the desktop applications.
 
-## Performance
+### 4. Themes (`src/config/themes.ts`)
 
-- 🚀 **Fast Loading** - Optimized assets and lazy loading
-- 📱 **Mobile Optimized** - Responsive design with touch support
-- 🎯 **SEO Friendly** - Semantic HTML and meta tags
-- ♿ **Accessible** - ARIA labels and keyboard navigation
+Modify existing themes or add your own by defining new colors for `--bg`, `--accent`, `--window-bg`, etc.
 
-## Contributing
+## 📂 Project Structure
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+- `src/apps/`: Individual application components (About, Projects, Games).
+- `src/components/`: Core UI components (Desktop, Taskbar, Window System).
+- `src/hooks/`: Custom hooks like `useWindowManager` and `useSound`.
+- `src/data/`: Centralized content in `data.json`.
+- `src/config/`: Configuration files for windows and themes.
 
-## License
+## 📝 License
 
-MIT License - feel free to use this project for your own portfolio!
+Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-**Built with ❤️ using modern web technologies**
+Built with ❤️ by [Arjun Mehta](https://github.com/arjunmehta)

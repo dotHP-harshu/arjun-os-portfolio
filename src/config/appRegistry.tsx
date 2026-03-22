@@ -1,20 +1,23 @@
-import AboutApp from "../apps/AboutApp";
-import BugHunterApp from "../apps/BugHunterApp";
-import CodeRunnerApp from "../apps/CodeRunnerApp";
-import ContactApp from "../apps/ContactApp";
-import ExperienceApp from "../apps/ExperienceApp";
-import MemoryMatchApp from "../apps/MemoryMatchApp";
-import NotesApp from "../apps/NotesApp";
-import ProjectApp from "../apps/ProjectApp";
-import ResumeApp from "../apps/ResumeApp";
-import SettingApp from "../apps/SettingApp";
-import SnakeGameApp from "../apps/SnakeGameApp";
-import SysMonApp from "../apps/SysMonApp";
-import TechApp from "../apps/TechApp";
-import TicTacToeApp from "../apps/TicTacToeApp";
+import { lazy, Suspense } from "react";
 import type { BackgroundType } from "../components/Backgrounds";
 import type { ThemeType } from "./themes";
 import type { WindowType } from "../types/window";
+
+// Lazy load apps to improve initial bundle size
+const AboutApp = lazy(() => import("../apps/AboutApp"));
+const BugHunterApp = lazy(() => import("../apps/BugHunterApp"));
+const CodeRunnerApp = lazy(() => import("../apps/CodeRunnerApp"));
+const ContactApp = lazy(() => import("../apps/ContactApp"));
+const ExperienceApp = lazy(() => import("../apps/ExperienceApp"));
+const MemoryMatchApp = lazy(() => import("../apps/MemoryMatchApp"));
+const NotesApp = lazy(() => import("../apps/NotesApp"));
+const ProjectApp = lazy(() => import("../apps/ProjectApp"));
+const ResumeApp = lazy(() => import("../apps/ResumeApp"));
+const SettingApp = lazy(() => import("../apps/SettingApp"));
+const SnakeGameApp = lazy(() => import("../apps/SnakeGameApp"));
+const SysMonApp = lazy(() => import("../apps/SysMonApp"));
+const TechApp = lazy(() => import("../apps/TechApp"));
+const TicTacToeApp = lazy(() => import("../apps/TicTacToeApp"));
 
 export type AppRenderContext = {
   currentTheme: ThemeType;
@@ -23,30 +26,37 @@ export type AppRenderContext = {
   setBackgroundType: (b: BackgroundType) => void;
 };
 
+const LoadingApp = () => (
+  <div className="h-full w-full flex items-center justify-center font-mono text-xs opacity-50">
+    &gt; Loading module...
+  </div>
+);
+
 export const appRegistry: Record<
   WindowType,
   (ctx: AppRenderContext) => import('react').ReactNode
 > = {
-  about: () => <AboutApp />,
-  projects: () => <ProjectApp />,
-  tech: () => <TechApp />,
-  experience: () => <ExperienceApp />,
-  contact: () => <ContactApp />,
-  resume: () => <ResumeApp />,
-  // terminal: () => <TerminalApp />,
+  about: () => <Suspense fallback={<LoadingApp />}><AboutApp /></Suspense>,
+  projects: () => <Suspense fallback={<LoadingApp />}><ProjectApp /></Suspense>,
+  tech: () => <Suspense fallback={<LoadingApp />}><TechApp /></Suspense>,
+  experience: () => <Suspense fallback={<LoadingApp />}><ExperienceApp /></Suspense>,
+  contact: () => <Suspense fallback={<LoadingApp />}><ContactApp /></Suspense>,
+  resume: () => <Suspense fallback={<LoadingApp />}><ResumeApp /></Suspense>,
   settings: (ctx) => (
-    <SettingApp
-      currentTheme={ctx.currentTheme}
-      onThemeChange={ctx.setCurrentTheme}
-      currentBackground={ctx.currentBackground}
-      onBackgroundChange={ctx.setBackgroundType}
-    />
+    <Suspense fallback={<LoadingApp />}>
+      <SettingApp
+        currentTheme={ctx.currentTheme}
+        onThemeChange={ctx.setCurrentTheme}
+        currentBackground={ctx.currentBackground}
+        onBackgroundChange={ctx.setBackgroundType}
+      />
+    </Suspense>
   ),
-  snake: () => <SnakeGameApp />,
-  tictactoe: () => <TicTacToeApp />,
-  memory: () => <MemoryMatchApp />,
-  notes: () => <NotesApp />,
-  bughunter: () => <BugHunterApp />,
-  sysmon: () => <SysMonApp />,
-  coderunner: () => <CodeRunnerApp />,
+  snake: () => <Suspense fallback={<LoadingApp />}><SnakeGameApp /></Suspense>,
+  tictactoe: () => <Suspense fallback={<LoadingApp />}><TicTacToeApp /></Suspense>,
+  memory: () => <Suspense fallback={<LoadingApp />}><MemoryMatchApp /></Suspense>,
+  notes: () => <Suspense fallback={<LoadingApp />}><NotesApp /></Suspense>,
+  bughunter: () => <Suspense fallback={<LoadingApp />}><BugHunterApp /></Suspense>,
+  sysmon: () => <Suspense fallback={<LoadingApp />}><SysMonApp /></Suspense>,
+  coderunner: () => <Suspense fallback={<LoadingApp />}><CodeRunnerApp /></Suspense>,
 };

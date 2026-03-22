@@ -7,7 +7,7 @@ interface BackgroundProps {
   type: BackgroundType;
 }
 
-export const Background: React.FC<BackgroundProps> = ({ type }) => {
+export const Background: React.FC<BackgroundProps> = React.memo(({ type }) => {
   switch (type) {
     case 'doodles':
       return <DoodleBackground />;
@@ -23,9 +23,9 @@ export const Background: React.FC<BackgroundProps> = ({ type }) => {
     default:
       return <ImprovedGridBackground />;
   }
-};
+});
 
-const ImprovedGridBackground = () => (
+const ImprovedGridBackground = React.memo(() => (
   <div className="absolute inset-0 pointer-events-none overflow-hidden">
     <motion.div
       className="absolute inset-0 opacity-40"
@@ -58,9 +58,9 @@ const ImprovedGridBackground = () => (
       }}
     />
   </div>
-);
+));
 
-const DoodleBackground = () => (
+const DoodleBackground = React.memo(() => (
   <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.07]">
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -88,7 +88,7 @@ const DoodleBackground = () => (
       <rect width="100%" height="100%" fill="url(#doodles)" />
     </svg>
   </div>
-);
+));
 const BlobBackground = () => (
   <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-25">
     <svg

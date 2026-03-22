@@ -72,17 +72,22 @@
     "databases": ["PostgreSQL", "Redis", "MongoDB", "Elasticsearch"],
     "devops": ["Docker", "Kubernetes", "AWS", "Terraform", "CI/CD"]
   },
-  "initialNotes": "Welcome to ArjunOS Notes!\n\n- Draggable windows\n- Custom themes\n- Snake game\n- Interactive terminal\n\nYour notes are saved automatically.",
+  "initialNotes": "Welcome to DeskFolio Notes!\n\n- Draggable windows\n- Custom themes\n- Snake game\n- Interactive terminal\n\nYour notes are saved automatically.",
   "system": {
-    "osName": "ArjunOS",
+    "osName": "DeskFolio",
     "osVersion": "v2.5.0-stable",
     "kernel": "React 19.1.1",
     "shell": "Tailwind 4.2.1",
+    "disabledApps": [],
+    "_appReferenceGuide": {
+      "ids": ["about", "projects", "tech", "experience", "contact", "resume", "settings", "notes", "coderunner", "sysmon", "snake", "tictactoe", "memory", "bughunter"],
+      "info": "Rename windows below or add IDs to 'disabledApps' to hide them."
+    },
     "boot": {
       "title": "System Console",
       "status": "> boot sequence in progress…",
       "lines": [
-        { "text": "ArjunOS v3.2.1 (Production Build)" },
+        { "text": "DeskFolio v3.2.1 (Production Build)" },
         { "text": "" },
         { "text": "> Initializing Distributed Systems Module..." },
         { "text": "> Connecting to PostgreSQL Cluster..." },
